@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <title>Artesanali AR</title>
 
-<script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+<script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
 <style>
 
@@ -49,18 +49,11 @@ Carregando...
 </div>
 
 <a-scene
-
-mindar-image="imageTargetSrc: targets.mind; autoStart: true; uiScanning: yes;"
-
-embedded
-
+mindar-image="imageTargetSrc: ./targets.mind;"
 color-space="sRGB"
-
-renderer="colorManagement:true, physicallyCorrectLights"
-
-vr-mode-ui="enabled:false"
-
-device-orientation-permission-ui="enabled:true"
+renderer="colorManagement: true;"
+vr-mode-ui="enabled: false"
+device-orientation-permission-ui="enabled: false">
 
 >
 
@@ -81,11 +74,11 @@ look-controls="enabled:false">
 <a-entity mindar-image-target="targetIndex:0">
 
 <a-box
-    position="0 0 0"
-    width="0.5"
-    height="0.5"
-    depth="0.5"
-    color="#00FF00">
+position="0 0 0"
+width="0.5"
+height="0.5"
+depth="0.5"
+color="red">
 </a-box>
 
 </a-entity>
