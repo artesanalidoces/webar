@@ -2,11 +2,13 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Artesanali 3D</title>
 
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script type="module"
+    src="https://unpkg.com/@google/model-viewer@4.0.0/dist/model-viewer.min.js">
+  </script>
 
   <style>
     *{
@@ -15,44 +17,52 @@
       box-sizing:border-box;
     }
 
-    body{
-      background:#f4f4f4;
+    html,body{
+      width:100%;
+      height:100%;
+      overflow:hidden;
       font-family:Arial,Helvetica,sans-serif;
-      display:flex;
-      flex-direction:column;
-      height:100vh;
+      background:#f5f5f5;
     }
 
     header{
-      background:#7b3f00;
-      color:white;
-      text-align:center;
-      padding:15px;
-      font-size:22px;
+      height:60px;
+      background:#7B3F00;
+      color:#fff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:24px;
       font-weight:bold;
     }
 
     model-viewer{
       width:100%;
-      flex:1;
-      background:#ffffff;
+      height:calc(100vh - 130px);
+      background:white;
     }
 
     footer{
-      text-align:center;
-      padding:15px;
+      height:70px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
       background:#ffffff;
       border-top:1px solid #ddd;
     }
 
     button{
-      background:#e53935;
-      color:white;
-      border:none;
-      padding:15px 25px;
-      border-radius:8px;
+      padding:15px 30px;
       font-size:18px;
+      border:none;
+      border-radius:8px;
+      background:#d32f2f;
+      color:white;
       cursor:pointer;
+    }
+
+    button:hover{
+      background:#b71c1c;
     }
   </style>
 
@@ -65,60 +75,37 @@ Artesanali Doces
 </header>
 
 <model-viewer
-
-id="viewer"
-
-src="Untitled.glb"
-
-camera-controls
-
-touch-action="pan-y"
-
-auto-rotate
-
-shadow-intensity="1"
-
-exposure="1"
-
-loading="eager"
-
-reveal="auto"
-
-poster=""
-
->
-
+    id="viewer"
+    src="Untitled.glb"
+    alt="Modelo 3D"
+    camera-controls
+    auto-rotate
+    shadow-intensity="1"
+    exposure="1"
+    environment-image="neutral"
+    loading="eager">
 </model-viewer>
 
 <footer>
 
 <button id="btnAR">
-
 Ver em Realidade Aumentada
-
 </button>
 
 </footer>
 
 <script>
+const viewer = document.getElementById("viewer");
+const btn = document.getElementById("btnAR");
 
-const viewer=document.getElementById("viewer");
-const btn=document.getElementById("btnAR");
-
-if(viewer.canActivateAR){
-
-}else{
-
-btn.style.display="none";
-
-}
-
-btn.onclick=()=>{
-
-viewer.activateAR();
-
-};
-
+btn.addEventListener("click", async () => {
+  try {
+    await viewer.activateAR();
+  } catch (e) {
+    alert("Este dispositivo não suporta Realidade Aumentada.");
+    console.error(e);
+  }
+});
 </script>
 
 </body>
